@@ -1,11 +1,26 @@
 import React, { ChangeEvent, useState } from "react";
+import { useRecoilState, useRecoilValue } from "recoil";
+import SearchAtom from "../../recoil/atoms/searchAtom";
+import TrucksAtom, { Truck } from "../../recoil/atoms/trucksAtoms";
 
 const HomePage = () => {
   const [zip, setZip] = useState("");
+  const truckList: Truck[] = useRecoilValue(TrucksAtom);
+  const [zipResults, setZipResults] = useRecoilState(SearchAtom);
 
   const updateZip = (event: ChangeEvent<HTMLInputElement>) => {
     setZip(event.target.value);
   };
+
+  const submitZip = () => {
+    const nearTrucks = truckList.filter(
+      (truck: Truck) => truck.postal_code === zip
+    );
+
+    setZipResults(nearTrucks);
+  };
+
+  console.log(zipResults);
 
   return (
     <div>
@@ -13,7 +28,7 @@ const HomePage = () => {
       <p>Please enter your zip code to find taco trucks in your area!</p>
       <div>
         <input onChange={updateZip} value={zip}></input>
-        <button>Find</button>
+        <button onClick={submitZip}>Find</button>
       </div>
     </div>
   );
