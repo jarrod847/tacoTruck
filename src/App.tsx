@@ -7,8 +7,8 @@ import SearchMenu from "./Components/Menu/searchMenu";
 function App() {
   return (
     <div className="App">
-      <NavBar />
       <Router>
+        <NavBar />
         <Route exact path="/" component={HomePage} />
         <Route path="/menu" component={SearchMenu} />
       </Router>

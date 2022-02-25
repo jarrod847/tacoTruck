@@ -1,5 +1,6 @@
 import Axios from "axios";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import truck from "../../imgs/truck.png";
 import TrucksAtom from "../../recoil/atoms/trucksAtoms";
@@ -18,7 +19,9 @@ const NavBar = () => {
   console.log(trucks);
   return (
     <NavBarDiv>
-      <img src={truck} />
+      <Link to="/">
+        <img src={truck} />
+      </Link>
     </NavBarDiv>
   );
 };
