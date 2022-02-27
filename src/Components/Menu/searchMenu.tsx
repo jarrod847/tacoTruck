@@ -1,10 +1,21 @@
-import Axios from "axios";
-import React, { useEffect } from "react";
-import { useRecoilState } from "recoil";
-import TrucksAtom from "../../recoil/atoms/trucksAtoms";
+import { useRecoilValue } from "recoil";
+import TrucksAtom, { Truck } from "../../recoil/atoms/trucksAtoms";
+import { TruckListDiv, TrucksCont } from "../styles/menuStyles";
+import SearchCard from "./searchCard";
 
 const SearchMenu = () => {
-  return <div></div>;
+  const searchResults: Truck[] = useRecoilValue(TrucksAtom);
+  return (
+    <div>
+      <TrucksCont>
+        <TruckListDiv>
+          {searchResults.map((result: Truck) => (
+            <SearchCard key={result.id} {...result} />
+          ))}
+        </TruckListDiv>
+      </TrucksCont>
+    </div>
+  );
 };
 
 export default SearchMenu;

@@ -2,12 +2,13 @@ import React, { ChangeEvent, useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import SearchAtom from "../../recoil/atoms/searchAtom";
 import TrucksAtom, { Truck } from "../../recoil/atoms/trucksAtoms";
+import { useHistory } from "react-router-dom";
 
 const HomePage = () => {
   const [zip, setZip] = useState("");
   const truckList: Truck[] = useRecoilValue(TrucksAtom);
   const [zipResults, setZipResults] = useRecoilState(SearchAtom);
-
+  let history = useHistory();
   const updateZip = (event: ChangeEvent<HTMLInputElement>) => {
     setZip(event.target.value);
   };
@@ -17,10 +18,10 @@ const HomePage = () => {
       (truck: Truck) => truck.postal_code === zip
     );
 
+    console.log(nearTrucks);
     setZipResults(nearTrucks);
+    history.push("/menu");
   };
-
-  console.log(zipResults);
 
   return (
     <div>
