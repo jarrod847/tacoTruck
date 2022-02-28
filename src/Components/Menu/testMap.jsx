@@ -17,11 +17,6 @@ function Map() {
     id: 'google-map-script',
     googleMapsApiKey: process.env.REACT_APP_MAP_KEY
   })
-  
-
-
-  const [map, setMap] = React.useState(null)
-
 
   return isLoaded ? (
       <GoogleMap
