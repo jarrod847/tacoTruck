@@ -5,6 +5,26 @@
   color: #141e27;
 }
 
+.scrollTest {
+  overflow: auto;
+  height: 300px;
+  width: 60%;
+  margin: auto;
+}
+
+.scrollTest::-webkit-scrollbar {
+  width: 16px;
+}
+
+.scrollTest::-webkit-scrollbar-track {
+  border-radius: 100px;
+}
+
+.scrollTest::-webkit-scrollbar-thumb {
+  background-color: #bf8b67;
+  border-radius: 100px;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;

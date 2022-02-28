@@ -1,19 +1,26 @@
+import { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 import TrucksAtom, { Truck } from "../../recoil/atoms/trucksAtoms";
-import { TruckListDiv, TrucksCont } from "../styles/menuStyles";
+import { MapCont, Menu, TruckListDiv } from "../styles/menuStyles";
+import { truckData } from "./mapData";
 import SearchCard from "./searchCard";
+import Map from "./testMap";
 
 const SearchMenu = () => {
   const searchResults: Truck[] = useRecoilValue(TrucksAtom);
+
   return (
     <div>
-      <TrucksCont>
+      <MapCont>
+        <Map />
+      </MapCont>
+      <div className="scrollTest">
         <TruckListDiv>
-          {searchResults.map((result: Truck) => (
+          {truckData.map((result: Truck) => (
             <SearchCard key={result.id} {...result} />
           ))}
         </TruckListDiv>
-      </TrucksCont>
+      </div>
     </div>
   );
 };
